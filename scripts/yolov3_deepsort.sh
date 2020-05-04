@@ -1,1 +1,1 @@
-python yolov3_deepsort.py [VIDEO_PATH] --config_detection
+python3 yolov3_deepsort.py [VIDEO_PATH] --config_detection

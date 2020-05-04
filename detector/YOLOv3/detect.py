@@ -13,14 +13,15 @@ def detect(cfgfile, weightfile, imgfolder):
 
     #m.print_network()
     m.load_weights(weightfile)
-    print('Loading weights from %s... Done!' % (weightfile))
+    print('Loading weights from %s... Done!~~~!!' % (weightfile))
 
-    # if m.num_classes == 20:
-    #     namesfile = 'data/voc.names'
-    # elif m.num_classes == 80:
-    #     namesfile = 'data/coco.names'
-    # else:
-    #     namesfile = 'data/names'
+    if m.num_classes == 20:
+        namesfile = 'data/voc.names'
+    elif m.num_classes == 80:
+        namesfile = 'data/coco.names'
+        print("COCOCOCOCOCOC!")
+    else:
+        namesfile = 'data/names'
     
     use_cuda = True
     if use_cuda:
@@ -54,12 +55,13 @@ def detect_cv2(cfgfile, weightfile, imgfile):
 
     m.print_network()
     m.load_weights(weightfile)
-    print('Loading weights from %s... Done!' % (weightfile))
+    print('Loading weights from %s... Done!--~~~' % (weightfile))
 
     if m.num_classes == 20:
         namesfile = 'data/voc.names'
     elif m.num_classes == 80:
         namesfile = 'data/coco.names'
+        print("afkasdfaskjdfnasd  ")
     else:
         namesfile = 'data/names'
     
@@ -88,12 +90,13 @@ def detect_skimage(cfgfile, weightfile, imgfile):
 
     m.print_network()
     m.load_weights(weightfile)
-    print('Loading weights from %s... Done!' % (weightfile))
+    print('Loading weights from %s... Done!****!!' % (weightfile))
 
     if m.num_classes == 20:
         namesfile = 'data/voc.names'
     elif m.num_classes == 80:
         namesfile = 'data/coco.names'
+        print("loading coco ----- names")
     else:
         namesfile = 'data/names'
     

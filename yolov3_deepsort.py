@@ -34,9 +34,11 @@ class VideoTracker(object):
             self.vdo = cv2.VideoCapture(args.cam)
         else:
             self.vdo = cv2.VideoCapture()
+        # print(cfg)
         self.detector = build_detector(cfg, use_cuda=use_cuda)
         self.deepsort = build_tracker(cfg, use_cuda=use_cuda)
         self.class_names = self.detector.class_names
+        # print(self.detector.class_names)
 
 
     def __enter__(self):
@@ -91,11 +93,13 @@ class VideoTracker(object):
             bbox_xywh, cls_conf, cls_ids = self.detector(im)
 
             # select person class
-            mask = cls_ids==0
+            # person = cls_ids == 0
+            car = cls_ids == 2
+            mask = car
 
             bbox_xywh = bbox_xywh[mask]
             # bbox dilation just in case bbox too small, delete this line if using a better pedestrian detector
-            bbox_xywh[:,3:] *= 1.2 
+            bbox_xywh[:,3:] *= 1.2
             cls_conf = cls_conf[mask]
 
             # do tracking
@@ -106,6 +110,7 @@ class VideoTracker(object):
                 bbox_tlwh = []
                 bbox_xyxy = outputs[:,:4]
                 identities = outputs[:,-1]
+                print(identities)
                 ori_im = draw_boxes(ori_im, bbox_xyxy, identities)
 
                 for bb_xyxy in bbox_xyxy:
